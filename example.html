@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>custom_context_menu</title>
+	<style type="text/css">
+		.container{
+			width: 1000px;
+			height: 600px;
+			margin: 30px auto;
+			background-color: #f1f1f1;
+		}
+		.toShowBox{
+			background-color: #c0c0c0;
+			width: 200px;
+			padding: 10px 13px;
+			box-shadow: 10px 10px 5px #888888;
+		}
+		.closeClass{
+			float: right;
+		}
+		#txt{
+			margin: 4px 0px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Context_menu</h1>
+		<a href="#" class="button">Button1 </a> | 
+		<a href="#" class="button">Button2 </a> |
+		<a href="#" class="button">Button3 </a>
+	</div>
+	<div class="toShowBox">
+		<a href="#" class="closeClass">x</a>
+		<div><label>Label</label></div>
+		<input type="text" placeholder="Example textbox" id="txt">
+		<div><button>Click</button></div>
+	</div>
+</body>
+<script type="text/javascript">
+	var _contextMenu = function(){
+		// var _context = {
+		// 	'type': {
+		// 		'free_click' : {
+		// 			'boxClass'	: null, //  (unique) The context menu (each box/context-menu should have unique class name)
+		// 			'clickedOn'	: null,	//	Context-menu to be triggered on click on (this class-item/s)
+		// 			'click'		: null, //  MouseClick [ left , middle ,  right ] DEFAULT: 'left'
+		// 			'closeClass': null	//  (unique) Ontional (If the context-menu has any close button defined, put the classname of that close button)
+		// 		},
+		// 		'controlled_click' : {
+		// 			'container' : null,
+		// 			'boxClass'	: null,
+		// 			'clickedOn'	: null,
+		// 			'besideClass': null,
+		// 			'closeClass': null
+		// 		}
+		// 	}
+		// },
+		active = 'free_click';
+
+		function ___(elem){
+			return document.getElementsByClassName(elem);
+		}
+
+		this.config = function(obj){
+			if(obj.type == 'free_click' )
+				_free_click(obj.config)
+		}
+
+		function __sanity(obj){
+			var res = {
+				msg: [],
+				err: 0,
+			}
+			if(___(obj.contextBox_Class).length == 0){
+				res.err ++;
+				res.msg.push("ERROR! Context box class was not found!")
+			}
+			if(___(obj.contextBox_Class).length > 1){
+				res.err ++;
+				res.msg.push("ERROR! Context-menu class should be unique. Duplicate exists!")
+			}
+			if(___(obj.clickedOn_Class).length == 0){
+				res.err ++;
+				res.msg.push("ERROR! Could not find the class '"+obj.clickedOn_Class+"' defined in 'clickedOn_Class'!")
+			}
+
+			if( obj.click != 'right' && obj.click != 'left' )  {
+				res.err ++;
+				res.msg.push("ERROR! Value for 'click' is invalid! [valid={ 'right' and 'left' }]")
+			}
+			if( typeof obj.closeBtn_Class != 'undefined' && ___(obj.closeBtn_Class).length == 0 ){
+				res.err ++;
+				res.msg.push("ERROR! Provided class '"+obj.closeBtn_Class+"' for 'closeBtn_Class' is not found!")
+			}
+
+			if( res.err == 0 ){
+				___(obj.contextBox_Class)[0].style.display = "none";
+				___(obj.contextBox_Class)[0].style.position = "absolute";
+				obj.closeBtn_Class = (typeof obj.closeBtn_Class == 'undefined') ? null : obj.closeBtn_Class;
+				return obj;
+			}
+			else {
+				console.log(res.msg)
+				return  false;
+			}
+				
+		}
+
+		function __renderContextMeu(e, context_menu){
+			___(context_menu)[0].style.top = Math.ceil(e.pageY).toString()+'px';
+			___(context_menu)[0].style.left = Math.ceil(e.pageX).toString()+'px';
+			___(context_menu)[0].style.display = 'block';
+		}
+
+		function __closeContextMenu(context_menu, closeBtn_Class){
+			document.getElementsByTagName("body")[0].addEventListener("click", function(e){
+				if(!___(context_menu)[0].contains(e.target)){
+					___(context_menu)[0].style.display = 'none';
+				}
+			});
+			 __closebutton(context_menu, closeBtn_Class);
+		}
+
+		function __closebutton(context_menu, closeBtn_Class){
+			if( closeBtn_Class != null ){
+				___(closeBtn_Class)[0].addEventListener("click", function(e){
+					___(context_menu)[0].style.display = 'none';
+				})
+			}
+		}
+
+		function _free_click(obj){
+			var x = __sanity(obj);
+			if(!x)
+				return;
+			else
+			var obj = x;
+
+			var evnts = {
+				'left' 	: 1,
+				// 'middle': 2,
+				'right'	: 3,
+			};
+			var x = ___(obj.clickedOn_Class);
+			for(var i = 0; i < x.length ; i++){
+				x[i].addEventListener("mousedown", function(e){
+					e = e || window.event;
+					if( e.which == evnts[obj.click] ){
+						if(e.which == 3){ // right click
+							this.setAttribute('oncontextmenu', 'return false;');
+							setTimeout(function(){ __renderContextMeu(e, obj.contextBox_Class); }, 50);
+							__closeContextMenu(obj.contextBox_Class, obj.closeBtn_Class);
+						}
+						else{
+							__renderContextMeu(e, obj.contextBox_Class);
+							 __closebutton(obj.contextBox_Class, obj.closeBtn_Class);
+						}
+
+					}
+				})
+			}			
+		}
+	};
+
+//------------------------------------------------------------
+	var x = new _contextMenu(); 
+	x.config({
+		'type': 'free_click',
+		'config': {
+			'contextBox_Class'	: 'toShowBox',
+			'clickedOn_Class' 	: 'container',
+			'closeBtn_Class' 	: 'closeClass',
+			'click'				: 'left'
+		}
+	});
+
+
+				
+		
+</script>
+</html>
