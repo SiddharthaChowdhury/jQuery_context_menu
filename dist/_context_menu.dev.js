@@ -54,6 +54,7 @@ var _contextMenu = function(){
 
 		this.run = function(){
 			if( !check_values(this) ){
+
 				var properties = {
 					contextMenu 			: $('.'+this.contextBoxClass),
 					popupBesideClass 		: $('.'+this.popupBesideClass),
@@ -62,6 +63,8 @@ var _contextMenu = function(){
 					closeBtnClass_str 		: '.'+this.closeBtnClass,
 					contextMenu_str			: '.'+this.contextBoxClass
 				};
+
+				properties.contextMenu.hide();			
 
 				$('body').click(function(e){  
 					var target = $(e.target); 
