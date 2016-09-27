@@ -11,11 +11,13 @@ A very simple, light, flexible and most dynamic context menu on web. Bind your m
                                                  // When document is ready
 	    var x = new _contextMenu();              // Create instance of _context_menu
 	    x.config({                               // Configure the new context menu
-		contextBoxClass : 'context-menu1',
-		clickedOnClass : 'class name',
-		closeBtnClass : 'className',
-		// popupBesideClass : 'className',
-		// disableErrorLog: true
+			contextBoxClass : 'context-menu1',
+			clickedOnClass : 'class name',
+			closeBtnClass : 'className',           
+			// popupBesideClass : 'className',
+			// disableErrorLog: true 			 
+			box_position : 'bot-left',
+	        displacement_px : [10,0]
 	    })
 	    x.run();                                 // initiate the newly created context menu
       });
@@ -32,7 +34,11 @@ A very simple, light, flexible and most dynamic context menu on web. Bind your m
 
 **popupBesideClass** : 'className',  (optional) Provide the className where you want the context menu to appear when invoked. If not provided by defauly it takes the position of the DOM element responsible for triggering the event ( or mouse click position)
 
-**disableErrorLog** : false | true.  (Optional) By default the value is 'false', which means errors and suggestions will be logged in console. Its handy while setting up the context menu. Make it true if you don't want to log errors in console.
+**disableErrorLog** : [false, true].  (Optional) By default the value is 'false', which means errors and suggestions will be logged in console. Its handy while setting up the context menu. Make it true if you don't want to log errors in console.
+
+**box_position** :  ['top-right', 'top-left', 'bot-right', 'bot-left']. (Optional) By default 'top-right'. This value determines the box position, with respect to the target element.
+
+**displacement_px** : [x,y] or can be [width, height]. Value inside should be integer [integer, integer]. Example: [10,20]. Use this option for fine grain displacement of the contextBox
 
 # Example
 
@@ -69,19 +75,21 @@ A very simple, light, flexible and most dynamic context menu on web. Bind your m
 **JS**
 
 	   $(function(){
-		 // --context_menu implementation
-		var x = new _contextMenu();
-		
-		x.config({                               
-		contextBoxClass : 'context-box',
-		clickedOnClass : 'trigger_context_menu',
-		closeBtnClass : '_close',
-		// popupBesideClass : 'className',
-		// disableErrorLog: true
-		})
-		
-		x.run();
-		
+			 // --context_menu implementation
+			var x = new _contextMenu();
+			
+			x.config({                               
+				contextBoxClass : 'context-box',
+				clickedOnClass : 'trigger_context_menu',
+				closeBtnClass : '_close',
+				// popupBesideClass : 'className',
+				// disableErrorLog: true,
+				box_position : 'bot-left',
+		        displacement_px : [10,0]
+			})
+			
+			x.run();
+
 	   });		
 
-**DEMO** [JS FIDDLE](https://jsfiddle.net/u10xh3f9/4/)
+**DEMO** [JS FIDDLE](https://jsfiddle.net/u10xh3f9/7/)
