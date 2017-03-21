@@ -94,4 +94,4 @@ Its a very simple, light-weight, flexible and dynamic context menu. (It supports
 
 	   });		
 
-**DEMO** [JS FIDDLE](https://jsfiddle.net/u10xh3f9/10/)
+**DEMO** [Codepen](https://codepen.io/Austin4Silvers/pen/VpXvbR)
