@@ -1,5 +1,7 @@
-# _context-menu
-A very simple, light, flexible and most dynamic context menu on web. Bind your mouse click events ( right click / left click) on any clickable element on your page. (It supports context-menu popup on **DYNAMICALLY created elements**).
+# jQuery_context_box
+Its a very simple, light-weight, flexible and dynamic context menu. (It supports context-menu popup on **DYNAMICALLY created elements**). 
+
+**Please note -** The freedom of how the context-menu/box will look line and what element goes inside is completely given to the user. The only **responsibility of this plugin is to** bring in your custom designed box in the configured place of your view.
 
 **Prerequisite**
 
@@ -17,7 +19,7 @@ A very simple, light, flexible and most dynamic context menu on web. Bind your m
 			// popupBesideClass : 'className',
 			// disableErrorLog: true 			 
 			box_position : 'bot-left',
-	        displacement_px : [10,0]
+	        displacement_px : [10,0] // [x,y] in px
 	    })
 	    x.run();                                 // initiate the newly created context menu
       });
@@ -32,7 +34,7 @@ A very simple, light, flexible and most dynamic context menu on web. Bind your m
 
 **closeBtnClass** : 'className',     (optional) In case if you have close button to close the context menu, pass the className here. By default context menu closes when clicked anywhere out side the context menu body. 
 
-**popupBesideClass** : 'className',  (optional) Provide the className where you want the context menu to appear when invoked. If not provided by defauly it takes the position of the DOM element responsible for triggering the event ( or mouse click position)
+**popupBesideClass** : 'className',  (optional) Provide the className where you want the context menu to appear when invoked. If not provided by default it takes the position of the DOM element responsible for triggering the event ( or mouse click position)
 
 **disableErrorLog** : [false, true].  (Optional) By default the value is 'false', which means errors and suggestions will be logged in console. Its handy while setting up the context menu. Make it true if you don't want to log errors in console.
 
