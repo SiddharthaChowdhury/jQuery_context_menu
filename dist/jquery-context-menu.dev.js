@@ -89,7 +89,7 @@ var _contextMenu = function(){
 					displacement_x			: this.displacement_px[0],
 					displacement_y			: this.displacement_px[1],
 				};
-				console.log(properties)
+				// console.log(properties)
 				properties.contextMenu.hide();			
 
 				$('body').click(function(e){  
@@ -128,8 +128,17 @@ var _contextMenu = function(){
 					}
 				});
 
-				$(document).on('click', properties.closeBtnClass_str, function(){
-					properties.contextMenu.hide();
+				// disable contextmenu hide on context box clicked
+				$(document).on('click', properties.contextMenu_str, function(e){
+					properties.contextMenu.show();
+					var classes = $(e.target).attr('class');
+					if ( properties.closeBtnClass_str != '.undefined' && typeof classes != 'undefined'){
+						var close = properties.closeBtnClass_str;
+						close = close.substr(1, close.length);
+						if(classes.indexOf(close) != -1){
+							properties.contextMenu.hide();
+						}
+					}
 				});
 			}
 		}

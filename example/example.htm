@@ -1,0 +1,141 @@
+<!-- 
+	Plugin: jQuery context box/menu
+	Author: Siddhartha Chowdhury
+	License: GPL3.0
+	Date: March 21 2107
+	Description: A sample demonstrating the context menu plugn and its use
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquert context menu</title>
+	<style type="text/css">
+		body{padding: 100px; font-family: sans-serif; height: 100vh;}
+		.body-ul{list-style: none;}
+		.body-ul li{margin: 0px 7px; display: inline-block;}
+		/*
+			CONTEXT BOXES DESIGN
+		*/
+		.simple-menu{
+			padding: 10px;
+			background-color: #f1f1f1;
+			width: 150px;
+		}
+		/* Simple menu */
+		.simple-menu {list-style: none; display: none;}
+		.simple-menu li{margin:3px; padding: 5px; cursor: pointer;}
+
+		/* Dialog box */
+		.dialog-box{background-color: #f1f1f1; padding: 22px 15px 10px 15px; position: relative; width: 300px; display: none;}
+		.close{text-decoration: none; position: absolute; right: 15px; top: 10px;}
+
+		/* Hybrid box with form */
+		.hybrid-box{background-color: #f1f1f1; padding: 22px 15px 10px 15px; position: relative; width: 300px; display: none;}
+		.hybrid-box input{width: 95%; padding: 7px;}
+	</style>
+</head>
+<body>
+	<h1>jQuery context menu example</h1>
+	<ul class="body-ul">
+		<li><a href="#" class="get-simpleMenu">Simple menu</a></li>
+		<li><a href="#" class="get-dialogBox">Dialog box</a></li>
+		<li><a href="#" class="get-hybridBox">User Input form</a></li>
+	</ul>
+
+	<!-- SCRIPTS -->
+	<script src="jquery-3.1.1.min.js"></script> 				<!-- Dependency -->
+	<script src="../dist/jquery-context-menu.min.js" ></script> <!-- context menu plugin -->
+																<!-- Implementation -->
+	<script> 
+		$(function(){
+			// 1. Configuration for simple context menu
+			var x = new _contextMenu();              
+	        x.config({                               
+	              contextBoxClass : 'simple-menu',
+	              clickedOnClass : 'get-simpleMenu',
+	              // closeBtnClass : '_close',
+	              // popupBesideClass : 'className',
+	              disableErrorLog: true,
+	              box_position : 'bot-left',
+	              displacement_px : [10,0]
+	        })
+	        x.run(); 
+
+	        // 2. Configuration for dialog box
+	        var y = new _contextMenu();              
+	        y.config({                               
+	              contextBoxClass : 'dialog-box',
+	              clickedOnClass : 'get-dialogBox',
+	              closeBtnClass : 'close',
+	              // popupBesideClass : 'className',
+	              disableErrorLog: true,
+	              box_position : 'bot-left',
+	              displacement_px : [10,10]
+	        })
+	        y.run();
+
+	        // 3. Configuration for dialog box
+	        var z = new _contextMenu();              
+	        z.config({                               
+	              contextBoxClass : 'hybrid-box',
+	              clickedOnClass : 'get-hybridBox',
+	              closeBtnClass : 'close',
+	              // popupBesideClass : 'className',
+	              disableErrorLog: true,
+	              box_position : 'bot-left',
+	              displacement_px : [10,10]
+	        })
+	        z.run(); 
+		})	
+	</script>
+
+
+	<!-- 	[ SIMPLE ] Context Menu   -->
+		<ul class="simple-menu">
+			<li>Home</li>
+			<li>Cut</li>
+			<li>Copy</li>
+			<li>Paste</li>
+		</ul>
+
+	<!--  [ DIALOG ] Context Box -->
+		<div class="dialog-box">
+			<a href="#" class="close">x</a>
+			<h3>Simple dialog</h3>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat..
+			</p>
+			<a href="http://www.lipsum.com/feed/html" target="_blank">Read more</a>
+		</div>
+
+	<!-- [ HYBRID ] Context form -->
+		<div class="hybrid-box">
+			<a href="#" class="close">x</a>
+			<h3>Hybrid box</h3>
+			<form action="">
+				<div>
+					<label>Email</label>
+					<input type="text" name="">
+				</div>
+				<div>
+					<label>Password</label>
+					<input type="text" name="">
+				</div>
+				<div>
+					<button>Submit</button>
+				</div>
+			</form>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+		</div>
+</body>
+</html>
