@@ -3,11 +3,13 @@ Its a very simple, light-weight, flexible and dynamic context menu. (It supports
 
 **Please note -** The freedom of how the context-menu/box will look like and what element goes inside is completely given to the user. The only **responsibility of this plugin is to** bring in your custom designed box in the configured place of your view.
 
-**Prerequisite**
+**Dependency**
 
 1.  Only Jquery
 
-**Syntax**
+#DEMO [Codepen](https://codepen.io/Austin4Silvers/pen/VpXvbR)
+
+**Sample**
 
       $(function(){
                                                  // When document is ready
