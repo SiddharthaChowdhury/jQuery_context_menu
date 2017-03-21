@@ -1,7 +1,7 @@
 # jQuery_context_box
 Its a very simple, light-weight, flexible and dynamic context menu. (It supports context-menu popup on **DYNAMICALLY created elements**). 
 
-**Please note -** The freedom of how the context-menu/box will look line and what element goes inside is completely given to the user. The only **responsibility of this plugin is to** bring in your custom designed box in the configured place of your view.
+**Please note -** The freedom of how the context-menu/box will look like and what element goes inside is completely given to the user. The only **responsibility of this plugin is to** bring in your custom designed box in the configured place of your view.
 
 **Prerequisite**
 
@@ -19,7 +19,7 @@ Its a very simple, light-weight, flexible and dynamic context menu. (It supports
 			// popupBesideClass : 'className',
 			// disableErrorLog: true 			 
 			box_position : 'bot-left',
-	        displacement_px : [10,0] // [x,y] in px
+	                displacement_px : [10,0] // [x,y] in px
 	    })
 	    x.run();                                 // initiate the newly created context menu
       });
